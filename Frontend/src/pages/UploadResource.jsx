@@ -206,10 +206,10 @@ const UploadResource = () => {
               <div className="form-group mb-0">
                 <label className="form-label">Resource Type</label>
                 <select name="resource_type" className="form-control" value={formData.resource_type} onChange={handleChange} required>
-                  <option value="document">Course Material (PDF, DOC, PPT)</option>
+                  <option value="document">Course Material (PDF, DOC, PPT, ZIP, HTML)</option>
                   <option value="video">Video Lecture (MP4, WEBM)</option>
                   <option value="audio">Audio Resource (MP3, WAV)</option>
-                  <option value="past_question">Past Question (PDF, DOC)</option>
+                  <option value="past_question">Past Question (PDF, DOC, ZIP, HTML)</option>
                 </select>
               </div>
 

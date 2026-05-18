@@ -7,3 +7,6 @@ python-multipart==0.0.19
 python-dotenv==1.0.1
 pydantic[email-validator]==2.10.4
 aiofiles==24.1.0
+cloudinary
+pymysql
+cryptography
