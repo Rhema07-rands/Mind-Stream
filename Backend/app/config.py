@@ -13,6 +13,8 @@ class Settings:
     )
 
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./biu_elibrary.db")
+    if DATABASE_URL.startswith("mysql://"):
+        DATABASE_URL = DATABASE_URL.replace("mysql://", "mysql+pymysql://", 1)
 
     UPLOAD_DIR: str = os.getenv("UPLOAD_DIR", "uploads")
     MAX_UPLOAD_SIZE_MB: int = int(os.getenv("MAX_UPLOAD_SIZE_MB", "100"))
