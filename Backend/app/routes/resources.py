@@ -152,12 +152,16 @@ def upload_resource(
 
     course = db.query(Course).filter(Course.code == course_code).first()
     if not course:
+        import re
+        match = re.search(r'\d', course_code)
+        extracted_level = int(match.group()) * 100 if match else 100
+
         # Create course dynamically
         course = Course(
             code=course_code,
             title=f"{course_code} Course",
             department_id=current_user.department_id,
-            level=int(course_code[-3]) * 100 if course_code[-3].isdigit() else 100,
+            level=extracted_level,
             semester=semester,
             lecturer_id=current_user.id,
             is_active=True
