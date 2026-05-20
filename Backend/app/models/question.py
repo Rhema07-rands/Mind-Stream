@@ -11,7 +11,7 @@ class Question(Base):
     title = Column(String(500), nullable=False)
     body = Column(Text, nullable=False)
     course_id = Column(Integer, ForeignKey("courses.id"), nullable=False)
-    asked_by = Column(Integer, ForeignKey("users.id"), nullable=False)
+    asked_by = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 

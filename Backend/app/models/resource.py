@@ -24,7 +24,7 @@ class Resource(Base):
     academic_session = Column(String(20), nullable=False)  # e.g. 2024/2025
     semester = Column(String(10), nullable=False)  # First or Second
     exam_type = Column(String(20), nullable=True)  # Exam, Test, Quiz, Assignment — only for past_question
-    uploaded_by = Column(Integer, ForeignKey("users.id"), nullable=False)
+    uploaded_by = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 

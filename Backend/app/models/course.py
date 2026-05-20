@@ -12,7 +12,7 @@ class Course(Base):
     department_id = Column(Integer, ForeignKey("departments.id"), nullable=False)
     level = Column(Integer, nullable=False)  # 100-500
     semester = Column(String(10), nullable=False, default="First")  # First or Second
-    lecturer_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    lecturer_id = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
     is_active = Column(Boolean, default=True)
 
     # Relationships

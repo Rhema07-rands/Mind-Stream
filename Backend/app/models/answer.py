@@ -10,7 +10,7 @@ class Answer(Base):
     id = Column(Integer, primary_key=True, index=True)
     body = Column(Text, nullable=False)
     question_id = Column(Integer, ForeignKey("questions.id"), nullable=False)
-    answered_by = Column(Integer, ForeignKey("users.id"), nullable=False)
+    answered_by = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 
