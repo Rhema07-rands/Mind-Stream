@@ -54,6 +54,9 @@ class UserUpdateRequest(BaseModel):
     level: Optional[int] = None
     is_active: Optional[bool] = None
 
+class PasswordChangeRequest(BaseModel):
+    password: str
+
 
 # ============================================================
 # DEPARTMENT SCHEMAS

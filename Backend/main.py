@@ -12,6 +12,7 @@ from app.routes.departments import router as departments_router
 from app.routes.courses import router as courses_router
 from app.routes.resources import router as resources_router
 from app.routes.questions import router as questions_router
+from app.routes.users import router as users_router
 import cloudinary
 
 if settings.CLOUDINARY_CLOUD_NAME and settings.CLOUDINARY_API_KEY and settings.CLOUDINARY_API_SECRET:
@@ -50,6 +51,7 @@ app.include_router(departments_router)
 app.include_router(courses_router)
 app.include_router(resources_router)
 app.include_router(questions_router)
+app.include_router(users_router)
 
 @app.get("/", tags=["Health"])
 def health_check():

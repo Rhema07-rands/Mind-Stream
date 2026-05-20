@@ -16,6 +16,19 @@ from app.auth import get_current_user, require_role, require_department_access
 router = APIRouter(prefix="/api", tags=["Q&A Forum"])
 
 
+@router.get("/questions", response_model=list[QuestionResponse])
+def list_all_questions(
+    page: int = Query(1, ge=1),
+    per_page: int = Query(20, ge=1, le=100),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role("admin")),
+):
+    """List all questions across all courses (Admin only)."""
+    questions = db.query(Question).order_by(Question.created_at.desc()).offset(
+        (page - 1) * per_page
+    ).limit(per_page).all()
+    return [_question_to_response(q) for q in questions]
+
 @router.get("/courses/{course_id}/questions", response_model=list[QuestionResponse])
 def list_questions(
     course_id: int,
