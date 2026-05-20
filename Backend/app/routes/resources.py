@@ -26,14 +26,7 @@ def resource_stats(
     """Return counts of resources by type, filtered by department and level."""
     from sqlalchemy import func
 
-    dept_id = current_user.department_id if current_user.role in ["student", "lecturer"] else department_id
-    user_level = current_user.level if current_user.role == "student" else level
-
     base = db.query(Resource.resource_type, func.count(Resource.id))
-    if dept_id:
-        base = base.filter(Resource.department_id == dept_id)
-    if user_level:
-        base = base.filter(Resource.level == user_level)
     base = base.filter(Resource.is_active == True)
 
     rows = base.group_by(Resource.resource_type).all()
